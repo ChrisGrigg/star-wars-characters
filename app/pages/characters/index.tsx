@@ -1,19 +1,10 @@
 import { Suspense } from "react"
-import { Head, Link, usePaginatedQuery, useRouter, BlitzPage, Routes } from "blitz"
+import { Head, Link, useQuery, BlitzPage, Routes } from "blitz"
 import Layout from "app/core/layouts/Layout"
 import getCharacters from "app/characters/queries/getCharacters"
 
-const ITEMS_PER_PAGE = 100
-
 export const CharactersList = () => {
-  const router = useRouter()
-  const page = Number(router.query.page) || 0
-  const [{ characters }] = usePaginatedQuery(getCharacters, {
-    where: {},
-    orderBy: { id: "asc" },
-    skip: ITEMS_PER_PAGE * page,
-    take: ITEMS_PER_PAGE,
-  })
+  const [{ characters }] = useQuery(getCharacters, {})
 
   return (
     <div>
