@@ -2,6 +2,7 @@ import { resolver, NotFoundError } from "blitz"
 import * as z from "zod"
 
 import { ApolloClient, InMemoryCache, gql } from "@apollo/client"
+import { Character } from "./character"
 
 // with more time this could be centralised
 // as an 'apolloclient.ts file to avoid DRY
@@ -17,7 +18,7 @@ const GetCharacter = z.object({
 
 export default resolver.pipe(resolver.zod(GetCharacter), resolver.authorize(), async ({ id }) => {
   // TODO: in multi-tenant app, you must add validation to ensure correct tenant
-  let character: any
+  let character: Character
   let data: any
 
   const query = gql`

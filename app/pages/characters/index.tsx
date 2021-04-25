@@ -10,9 +10,9 @@ export const CharactersList = () => {
     <div>
       <ul>
         {characters.map((character) => (
-          <li key={character.node.id}>
-            <Link href={Routes.ShowCharacterPage({ characterId: character.node.id })}>
-              <a>{character.node.name}</a>
+          <li key={character.id}>
+            <Link href={Routes.ShowCharacterPage({ characterId: character.id })}>
+              <a>{character.name}</a>
             </Link>
           </li>
         ))}
