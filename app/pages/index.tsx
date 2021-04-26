@@ -4,6 +4,7 @@ import Layout from "app/core/layouts/Layout"
 import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 import logout from "app/auth/mutations/logout"
 import CharactersPage from "./characters"
+import Button from "app/core/components/Button"
 
 /*
  * This file is just for a pleasant getting started page for your new app.
@@ -20,14 +21,12 @@ const UserInfo = () => {
         <div className="inline mr-5">
           Welcome <code>{currentUser.email}</code>
         </div>
-        <button
-          className="button small"
+        <Button
+          label="Logout"
           onClick={async () => {
             await logoutMutation()
           }}
-        >
-          Logout
-        </button>
+        />
       </>
     )
   } else {

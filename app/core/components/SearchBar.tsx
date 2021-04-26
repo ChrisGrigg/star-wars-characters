@@ -1,4 +1,5 @@
 import React from "react"
+import Button from "app/core/components/Button"
 
 const SearchBar = ({ keyword, setKeyword }) => {
   return (
@@ -11,11 +12,8 @@ const SearchBar = ({ keyword, setKeyword }) => {
         placeholder={"Search for a character by their name ..."}
         onChange={(e) => setKeyword(e.target.value)}
       />
-      <button className="bg-grey-lightest border-grey border-l shadow hover:bg-grey-lightest">
-        <span className="w-auto flex justify-end items-center text-grey p-2 hover:text-grey-darkest">
-          <i className="text-sm">search</i>
-        </span>
-      </button>
+      {/* This Button is just a UX placeholder to give an indication to the user what the search bar is for */}
+      <Button label="search" onClick="" />
     </div>
   )
 }
