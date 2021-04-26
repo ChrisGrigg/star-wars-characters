@@ -17,7 +17,7 @@ const UserInfo = () => {
   if (currentUser) {
     return (
       <>
-        <div>
+        <div className="inline mr-5">
           Welcome <code>{currentUser.email}</code>
         </div>
         <button
@@ -50,10 +50,12 @@ const UserInfo = () => {
 
 const Home: BlitzPage = () => {
   return (
-    <div>
-      <Suspense fallback="Loading...">
-        <UserInfo />
-      </Suspense>
+    <div className="p-5">
+      <div className="mb-5">
+        <Suspense fallback="Loading...">
+          <UserInfo />
+        </Suspense>
+      </div>
 
       <CharactersPage></CharactersPage>
     </div>
