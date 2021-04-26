@@ -4,14 +4,17 @@ import { Head, Link, useQuery, BlitzPage, Routes } from "blitz"
 import Layout from "app/core/layouts/Layout"
 import getCharacters from "app/characters/queries/getCharacters"
 import { Character } from "app/characters/queries/character"
+import SearchBar from "app/core/components/SearchBar"
 
 export const CharactersList = () => {
   const [query] = useQuery(getCharacters, {})
   const [characters, setCharacters] = useState(query.characters)
   const [orderHeight, setOrderHeight] = useState(false)
   const [orderGender, setOrderGender] = useState(false)
-  const [charactersPristine] = useState(query.characters)
+  const [charactersDefault] = useState(query.characters)
   const [speciesFilters] = useState(query.species)
+
+  const [inputSearch, setInputSearch] = useState("")
 
   const sortByHeight = () => {
     setOrderHeight(!orderHeight)
@@ -37,19 +40,30 @@ export const CharactersList = () => {
   }
 
   const filterBySpecies = (event) => {
-    setCharacters(charactersPristine)
-    const filtered = charactersPristine.filter((item) => {
+    setCharacters(charactersDefault)
+    const filtered = charactersDefault.filter((item) => {
       return item.species && item.species.name === event.target.value
     })
     setCharacters(filtered)
   }
 
   const removeFilterBySpecies = () => {
-    setCharacters(charactersPristine)
+    setCharacters(charactersDefault)
+  }
+
+  const updateInputSearch = async (inputSearch) => {
+    // this is n^2 but with this small data set on the front-end
+    // it does not matter, if increasing in size be wary
+    const filtered = charactersDefault.filter((country) => {
+      return country.name.toLowerCase().includes(inputSearch.toLowerCase())
+    })
+    setInputSearch(inputSearch)
+    setCharacters(filtered)
   }
 
   return (
     <div>
+      <SearchBar keyword={inputSearch} setKeyword={updateInputSearch} />
       <div className="grid grid-cols-12 gap-4">
         <div className="col-span-2">
           <h1 className="font-bold">Filters</h1>
