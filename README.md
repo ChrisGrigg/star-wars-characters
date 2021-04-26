@@ -1,12 +1,14 @@
 # **star-wars-characters**
 
-## Title & Description
-
-This app displays Star Wars characters information which can be searched, sorted and filtered.
+This application displays Star Wars characters information which can be searched, sorted and filtered.
 
 ## Environments
 
-This application was developed on MacOS Big Sur 11.2.3.
+This application was developed on:
+
+- MacOS Big Sur v11.2.3
+- Node v12.16.1
+- Yarn v1.22.10
 
 ## Getting Started
 
