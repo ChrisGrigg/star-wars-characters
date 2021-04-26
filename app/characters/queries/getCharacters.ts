@@ -25,6 +25,14 @@ export default resolver.pipe(resolver.authorize(), async () => {
             name
             gender
             height
+            species {
+              id
+              name
+            }
+            homeworld {
+              id
+              name
+            }
             filmConnection {
               edges {
                 node {
@@ -52,7 +60,27 @@ export default resolver.pipe(resolver.authorize(), async () => {
   })
   console.log("charactersFormatted", charactersFormatted)
 
+  // get species in correct format for filtering data
+  const species = charactersFormatted.map((character) => {
+    return character.species
+  })
+  const onlySpecies = species.filter((item, index) => {
+    return item
+  })
+  const filteredSpecies = onlySpecies.filter((item, index) => {
+    return onlySpecies.indexOf(item) === index
+  })
+  const orderedSpecies = filteredSpecies.sort((a, b) => {
+    if (a.name > b.name) {
+      return 1
+    }
+    if (b.name > a.name) {
+      return -1
+    }
+    return 0
+  })
+
   if (!data) throw new NotFoundError()
 
-  return { characters: charactersFormatted }
+  return { characters: charactersFormatted, species: orderedSpecies }
 })
