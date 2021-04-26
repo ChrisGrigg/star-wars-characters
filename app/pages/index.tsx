@@ -50,8 +50,8 @@ const UserInfo = () => {
 
 const Home: BlitzPage = () => {
   return (
-    <div className="p-5">
-      <div className="mb-5">
+    <div>
+      <div className="pl-5 pr-5 pt-5">
         <Suspense fallback="Loading...">
           <UserInfo />
         </Suspense>

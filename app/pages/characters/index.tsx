@@ -113,14 +113,16 @@ export const CharactersList = () => {
 const CharactersPage: BlitzPage = () => {
   return (
     <>
-      <Head>
-        <title>Characters</title>
-      </Head>
+      <div className="p-5">
+        <Head>
+          <title>Characters</title>
+        </Head>
 
-      <div>
-        <Suspense fallback={<div>Loading...</div>}>
-          <CharactersList />
-        </Suspense>
+        <div>
+          <Suspense fallback={<div>Loading...</div>}>
+            <CharactersList />
+          </Suspense>
+        </div>
       </div>
     </>
   )
