@@ -10,6 +10,28 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 })
 
+function formatSpecies(charactersFormatted: Character[]) {
+  const species = charactersFormatted.map((character) => {
+    return character.species
+  })
+  const onlySpecies = species.filter((item, index) => {
+    return item
+  })
+  const filteredSpecies = onlySpecies.filter((item, index) => {
+    return onlySpecies.indexOf(item) === index
+  })
+  const orderedSpecies = filteredSpecies.sort((a, b) => {
+    if (a.name > b.name) {
+      return 1
+    }
+    if (b.name > a.name) {
+      return -1
+    }
+    return 0
+  })
+  return orderedSpecies
+}
+
 export default resolver.pipe(resolver.authorize(), async () => {
   // TODO: in multi-tenant app, you must add validation to ensure correct tenant
   let characters: any
@@ -41,6 +63,10 @@ export default resolver.pipe(resolver.authorize(), async () => {
                 }
               }
             }
+            birthYear
+            eyeColor
+            skinColor
+            hairColor
           }
         }
       }
@@ -58,27 +84,9 @@ export default resolver.pipe(resolver.authorize(), async () => {
   charactersFormatted = characters.map((character) => {
     return character.node
   })
-  console.log("charactersFormatted", charactersFormatted)
 
   // get species in correct format for filtering data
-  const species = charactersFormatted.map((character) => {
-    return character.species
-  })
-  const onlySpecies = species.filter((item, index) => {
-    return item
-  })
-  const filteredSpecies = onlySpecies.filter((item, index) => {
-    return onlySpecies.indexOf(item) === index
-  })
-  const orderedSpecies = filteredSpecies.sort((a, b) => {
-    if (a.name > b.name) {
-      return 1
-    }
-    if (b.name > a.name) {
-      return -1
-    }
-    return 0
-  })
+  const orderedSpecies = formatSpecies(charactersFormatted)
 
   if (!data) throw new NotFoundError()
 

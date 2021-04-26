@@ -26,6 +26,28 @@ export default resolver.pipe(resolver.zod(GetCharacter), resolver.authorize(), a
       person(id: "${id}") {
         id
         name
+        gender
+        height
+        species {
+          id
+          name
+        }
+        homeworld {
+          id
+          name
+        }
+        filmConnection {
+          edges {
+            node {
+              id
+              title
+            }
+          }
+        }
+        birthYear
+        eyeColor
+        skinColor
+        hairColor
       }
     }
   `

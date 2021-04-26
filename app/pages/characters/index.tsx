@@ -68,7 +68,7 @@ export const CharactersList = () => {
         <div className="col-span-2">
           <h1 className="font-bold">Filters</h1>
           <h3 className="font-bold">Species:</h3>
-          <select name="cars" id="cars" onChange={filterBySpecies}>
+          <select name="species" id="species" onChange={filterBySpecies}>
             {speciesFilters.map((item) => (
               <option key={item.id} value={item.name}>
                 {item.name}
@@ -82,10 +82,10 @@ export const CharactersList = () => {
         <div className="col-span-10">
           <div className="flex mb-3">
             <h3 className="flex-1 font-bold">Name</h3>
-            <button onClick={sortByGender} className="flex-1 font-bold  text-blue-900">
+            <button onClick={sortByGender} className="flex-1 font-bold text-blue-900">
               Gender
             </button>
-            <button onClick={sortByHeight} className="flex-1 font-bold  text-blue-900">
+            <button onClick={sortByHeight} className="flex-1 font-bold text-blue-900">
               Height
             </button>
             <h3 className="flex-1 font-bold">Species</h3>
@@ -95,7 +95,7 @@ export const CharactersList = () => {
             {characters.map((character) => (
               <li key={character.id} className="flex">
                 <Link href={Routes.ShowCharacterPage({ characterId: character.id })}>
-                  <a className="flex-1">{character.name}</a>
+                  <a className="flex-1 text-blue-900">{character.name}</a>
                 </Link>
                 <span className="flex-1">{character.gender}</span>
                 <span className="flex-1">{character.height}</span>
