@@ -23,6 +23,8 @@ export default resolver.pipe(resolver.authorize(), async () => {
           node {
             id
             name
+            gender
+            height
             filmConnection {
               edges {
                 node {
