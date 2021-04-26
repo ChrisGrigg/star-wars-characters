@@ -38,7 +38,8 @@ yarn test
 
 ## TODO (with more time)
 
-- at the moment filtering and searching resets the state of the data. Apply state management such as Redux
+- at the moment filtering and searching resets the state of the data. Improve state management.
 - create Layout so styling such as padding can be applied once to a parent component for DRY principle
 - 'characters.tsx' page should be divided into more components so it's less bulky and more readable
 - create resolver to toggle favourite character
+- ideally TDD will be used but failing that write unit tests for each module
