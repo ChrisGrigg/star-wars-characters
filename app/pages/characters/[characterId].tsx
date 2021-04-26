@@ -23,7 +23,7 @@ export const Character = () => {
 
 const ShowCharacterPage: BlitzPage = () => {
   return (
-    <div>
+    <div className="p-5">
       <p>
         <Link href={Routes.CharactersPage()}>
           <a>Characters</a>
