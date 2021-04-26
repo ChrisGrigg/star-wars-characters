@@ -13,7 +13,7 @@ const SearchBar = ({ keyword, setKeyword }) => {
       />
       <button className="bg-grey-lightest border-grey border-l shadow hover:bg-grey-lightest">
         <span className="w-auto flex justify-end items-center text-grey p-2 hover:text-grey-darkest">
-          <i className="material-icons text-xs">search</i>
+          <i className="text-sm">search</i>
         </span>
       </button>
     </div>

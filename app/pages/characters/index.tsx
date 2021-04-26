@@ -68,6 +68,7 @@ export const CharactersList = () => {
         <div className="col-span-2">
           <h1 className="font-bold">Filters</h1>
           <h3 className="font-bold">Species:</h3>
+          {/* TODO: this should be a list with checkboxes rather than a dropdown so multiple items can be selected */}
           <select name="species" id="species" onChange={filterBySpecies}>
             {speciesFilters.map((item) => (
               <option key={item.id} value={item.name}>
@@ -82,10 +83,10 @@ export const CharactersList = () => {
         <div className="col-span-10">
           <div className="flex mb-3">
             <h3 className="flex-1 font-bold">Name</h3>
-            <button onClick={sortByGender} className="flex-1 font-bold text-blue-900">
+            <button onClick={sortByGender} className="flex-1 font-bold text-blue-900 text-left">
               Gender
             </button>
-            <button onClick={sortByHeight} className="flex-1 font-bold text-blue-900">
+            <button onClick={sortByHeight} className="flex-1 font-bold text-blue-900 text-left">
               Height
             </button>
             <h3 className="flex-1 font-bold">Species</h3>
