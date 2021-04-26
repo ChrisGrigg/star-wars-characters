@@ -19,7 +19,7 @@ export const CharactersList = () => {
   const sortByHeight = () => {
     setOrderHeight(!orderHeight)
     let sorted: Character[]
-    sorted = [...characters].sort((a, b) => {
+    sorted = characters.sort((a, b) => {
       return orderHeight ? b.height - a.height : a.height - b.height
     })
     setCharacters(sorted)
@@ -27,7 +27,7 @@ export const CharactersList = () => {
 
   const sortByGender = () => {
     setOrderGender(!orderGender)
-    const sorted = [...characters].sort((a, b) => {
+    const sorted = characters.sort((a, b) => {
       if (a.gender > b.gender) {
         return orderGender ? -1 : 1
       }
@@ -51,9 +51,9 @@ export const CharactersList = () => {
     setCharacters(charactersDefault)
   }
 
-  const updateInputSearch = async (inputSearch) => {
+  const updateInputSearch = async (inputSearch: string) => {
     // this is n^2 but with this small data set on the front-end
-    // it does not matter, if increasing in size be wary
+    // it does not matter, if increasing in size use hash map
     const filtered = charactersDefault.filter((country) => {
       return country.name.toLowerCase().includes(inputSearch.toLowerCase())
     })
@@ -69,6 +69,7 @@ export const CharactersList = () => {
           <h1 className="font-bold">Filters</h1>
           <h3 className="font-bold">Species:</h3>
           {/* TODO: this should be a list with checkboxes rather than a dropdown so multiple items can be selected */}
+          {/* TODO: this should be a 'Filter' component so it can be repeated for other properties such as 'Gender' */}
           <select name="species" id="species" onChange={filterBySpecies}>
             {speciesFilters.map((item) => (
               <option key={item.id} value={item.name}>

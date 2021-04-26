@@ -1,7 +1,9 @@
-import React from "react"
+import React, { useState } from "react"
 import Button from "app/core/components/Button"
 
 const SearchBar = ({ keyword, setKeyword }) => {
+  const [searchInput, setSearchInput] = useState("")
+
   return (
     <div className="flex border-grey-light border mb-5">
       <input
@@ -10,10 +12,17 @@ const SearchBar = ({ keyword, setKeyword }) => {
         key="search bar"
         value={keyword}
         placeholder={"Search for a character by their name ..."}
-        onChange={(e) => setKeyword(e.target.value)}
+        onChange={(e) => {
+          setSearchInput(e.target.value)
+          setKeyword(e.target.value)
+        }}
       />
-      {/* This Button is just a UX placeholder to give an indication to the user what the search bar is for */}
-      <Button label="search" onClick="" />
+      <Button
+        label="search"
+        onClick={() => {
+          setKeyword(searchInput)
+        }}
+      />
     </div>
   )
 }

@@ -11,15 +11,19 @@ const client = new ApolloClient({
 })
 
 function formatSpecies(charactersFormatted: Character[]) {
+  // remove everything but species object from character array
   const species = charactersFormatted.map((character) => {
     return character.species
   })
+  // remove null items
   const onlySpecies = species.filter((item, index) => {
     return item
   })
+  // remove duplicates
   const filteredSpecies = onlySpecies.filter((item, index) => {
     return onlySpecies.indexOf(item) === index
   })
+  // sort in alphabetical order
   const orderedSpecies = filteredSpecies.sort((a, b) => {
     if (a.name > b.name) {
       return 1
@@ -33,7 +37,6 @@ function formatSpecies(charactersFormatted: Character[]) {
 }
 
 export default resolver.pipe(resolver.authorize(), async () => {
-  // TODO: in multi-tenant app, you must add validation to ensure correct tenant
   let characters: any
   let charactersFormatted: Character[]
   let data: any
