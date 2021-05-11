@@ -63,7 +63,7 @@ export const CharactersList = () => {
 
   return (
     <div>
-      <SearchBar keyword={inputSearch} setKeyword={updateInputSearch} />
+      <SearchBar setKeyword={updateInputSearch} />
       <div className="grid grid-cols-12 gap-4">
         <div className="col-span-2">
           <h1 className="font-bold">Filters</h1>
