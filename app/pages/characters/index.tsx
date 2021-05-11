@@ -14,8 +14,6 @@ export const CharactersList = () => {
   const [charactersDefault] = useState(query.characters)
   const [speciesFilters] = useState(query.species)
 
-  const [inputSearch, setInputSearch] = useState("")
-
   const sortByHeight = () => {
     setOrderHeight(!orderHeight)
     let sorted: Character[]
@@ -57,7 +55,6 @@ export const CharactersList = () => {
     const filtered = charactersDefault.filter((country) => {
       return country.name.toLowerCase().includes(inputSearch.toLowerCase())
     })
-    setInputSearch(inputSearch)
     setCharacters(filtered)
   }
 
