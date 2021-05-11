@@ -3,34 +3,23 @@ import { Suspense, useState } from "react"
 import { Head, Link, useQuery, BlitzPage, Routes } from "blitz"
 import Layout from "app/core/layouts/Layout"
 import getCharacters from "app/characters/queries/getCharacters"
-import { Character } from "app/characters/queries/character"
 import SearchBar from "app/core/components/SearchBar"
 
 export const CharactersList = () => {
   const [query] = useQuery(getCharacters, {})
   const [characters, setCharacters] = useState(query.characters)
-  const [orderHeight, setOrderHeight] = useState(false)
-  const [orderGender, setOrderGender] = useState(false)
+  const [orderSort, setOrderSort] = useState(false)
   const [charactersDefault] = useState(query.characters)
   const [speciesFilters] = useState(query.species)
 
-  const sortByHeight = () => {
-    setOrderHeight(!orderHeight)
-    let sorted: Character[]
-    sorted = characters.sort((a, b) => {
-      return orderHeight ? b.height - a.height : a.height - b.height
-    })
-    setCharacters(sorted)
-  }
-
-  const sortByGender = () => {
-    setOrderGender(!orderGender)
+  const sort = (property: string) => {
+    setOrderSort(!orderSort)
     const sorted = characters.sort((a, b) => {
-      if (a.gender > b.gender) {
-        return orderGender ? -1 : 1
+      if (a[property] > b[property]) {
+        return orderSort ? -1 : 1
       }
-      if (b.gender > a.gender) {
-        return orderGender ? 1 : -1
+      if (b[property] > a[property]) {
+        return orderSort ? 1 : -1
       }
       return 0
     })
@@ -81,10 +70,16 @@ export const CharactersList = () => {
         <div className="col-span-10">
           <div className="flex mb-3">
             <h3 className="flex-1 font-bold">Name</h3>
-            <button onClick={sortByGender} className="flex-1 font-bold text-blue-900 text-left">
+            <button
+              onClick={() => sort("gender")}
+              className="flex-1 font-bold text-blue-900 text-left"
+            >
               Gender
             </button>
-            <button onClick={sortByHeight} className="flex-1 font-bold text-blue-900 text-left">
+            <button
+              onClick={() => sort("height")}
+              className="flex-1 font-bold text-blue-900 text-left"
+            >
               Height
             </button>
             <h3 className="flex-1 font-bold">Species</h3>
